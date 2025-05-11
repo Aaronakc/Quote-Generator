@@ -38,7 +38,7 @@ const quotes = [
 const display = document.querySelector(".quotes");
 const randomBtn=document.querySelector(".random");
 const nextBtn=document.querySelector(".next");
-const prevBtn=document.querySelector('prevBtn');
+const prevBtn=document.querySelector(".previous");
 console.log(display);
 let currentIndex;
 
@@ -52,9 +52,30 @@ const generateRandomQuotes=()=>{
   display.innerHTML=quotes[currentIndex].text;
 }
 
+const nextQuotes=()=>{
+  if(currentIndex >= quotes.length-1){
+    currentIndex=0;
+  }
+  else{
+    currentIndex++;    
+  }
+  console.log(currentIndex)
+  display.innerHTML=quotes[currentIndex].text;
 
+}
+
+const prevQuotes=()=>{
+  if(currentIndex <= 0) {
+    currentIndex=quotes.length-1
+  }
+  else{
+    currentIndex--
+  }
+  console.log(currentIndex)
+  display.innerHTML=quotes[currentIndex].text;
+
+}
 generateRandomQuotes();
 randomBtn.addEventListener('click',generateRandomQuotes)
-
-
-
+nextBtn.addEventListener('click',nextQuotes)
+prevBtn.addEventListener('click',prevQuotes)

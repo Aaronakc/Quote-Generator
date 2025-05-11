@@ -119,10 +119,12 @@ const increaseBtn = document.querySelector(".increase");
 const decreaseBtn = document.querySelector(".decrease");
 const warning = document.querySelector(".warning");
 const category=document.getElementById("category");
+const darkModeBtn = document.querySelector('.bg-btn');
 console.log(category);
 console.log(display);
 let currentIndex;
 let font = 16;
+let darkMode = false;
 
 const generateRandomNum = () => {
   const randomNumber = Math.floor(Math.random() * quotes.length);
@@ -183,6 +185,15 @@ const decreaseFont = () => {
   }
 };
 
+const changeMode = () => {
+  darkMode = !darkMode;
+  document.body.classList.toggle('dark');
+
+  let text = darkMode ? 'light': 'dark';
+
+  darkModeBtn.innerHTML = text;
+}
+
 generateRandomQuotes();
 randomBtn.addEventListener("click", generateRandomQuotes);
 nextBtn.addEventListener("click", nextQuotes);
@@ -193,3 +204,4 @@ category.addEventListener('change', e => {
   console.log(e.target.value)
   changeCategory(e.target.value)
 });
+darkModeBtn.addEventListener("click", changeMode)

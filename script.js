@@ -1,4 +1,4 @@
-const quotes = [
+const allQuotes = [
   {
     text: "Science is a way of thinking much more than it is a body of knowledge.",
     category: "science",
@@ -109,6 +109,7 @@ const quotes = [
     category: "social",
   },
 ];
+let quotes = [...allQuotes]
 
 const display = document.querySelector(".quotes");
 const randomBtn = document.querySelector(".random");
@@ -153,6 +154,19 @@ const prevQuotes = () => {
   display.innerHTML = quotes[currentIndex].text;
 };
 
+const changeCategory = cat =>{
+  if(cat ===  "all") {
+    quotes = [...allQuotes]
+    console.log(quotes)
+    return;
+  }
+  quotes = allQuotes.filter(quote => quote.category === cat) ;
+  console.log(quotes)
+
+  generateRandomQuotes()
+
+}
+
 const increaseFont = () => {
   font++;
   display.style.fontSize = `${font}px`;
@@ -175,3 +189,7 @@ nextBtn.addEventListener("click", nextQuotes);
 prevBtn.addEventListener("click", prevQuotes);
 increaseBtn.addEventListener("click", increaseFont);
 decreaseBtn.addEventListener("click", decreaseFont);
+category.addEventListener('change', e => {
+  console.log(e.target.value)
+  changeCategory(e.target.value)
+});
